@@ -15,5 +15,5 @@ const onRequest = (request, response) => {
 };
 
 http.createServer(onRequest).listen(port, () => {
-    console.log(`Server running on port ${port}.`);
+    //console.log(`Server running on port ${port}.`);
 });
