@@ -1,17 +1,16 @@
 const http = require("http");
-const fs = require("fs");
+const htmlResponse = require("./htmlResponse.js");
 
 const port = process.env.PORT || process.env.NODE_PORT || 3000;
-const index = fs.readFileSync(`${__dirname}/../client/client.html`);
-
 
 const onRequest = (request, response) => {
-    response.writeHead(200, {
-        "Content-Type" : "audio/mpeg"
-    });
-
-    response.write(index);
-    response.end();
+    switch (request.url){
+        case "/":
+            htmlResponse.serveIndexPage(request, response);
+            break;
+        default:
+            htmlResponse.serveSecondPage(request, response);
+    };
 };
 
 http.createServer(onRequest).listen(port, () => {
